@@ -11,7 +11,7 @@ import (
 	"text/template"
 
 	"github.com/shurcooL/go/gists/gist6418290"
-	"github.com/shurcooL/go/highlight_go"
+	"github.com/shurcooL/highlight_go"
 	"github.com/sourcegraph/annotate"
 	"github.com/sourcegraph/syntaxhighlight"
 )
