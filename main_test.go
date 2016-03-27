@@ -10,7 +10,7 @@ import (
 	"sort"
 	"text/template"
 
-	"github.com/shurcooL/go/gists/gist6418290"
+	"github.com/shurcooL/go/reflectsource"
 	"github.com/shurcooL/highlight_go"
 	"github.com/sourcegraph/annotate"
 	"github.com/sourcegraph/syntaxhighlight"
@@ -20,7 +20,7 @@ import (
 type debugPrinter struct{ syntaxhighlight.Printer }
 
 func (p debugPrinter) Print(w io.Writer, kind syntaxhighlight.Kind, tokText string) error {
-	fmt.Println(gist6418290.GetParentFuncArgsAsString(kind, tokText))
+	fmt.Println(reflectsource.GetParentFuncArgsAsString(kind, tokText))
 
 	return p.Printer.Print(w, kind, tokText)
 }
@@ -95,7 +95,7 @@ func ExamplePrintWhitespace() {
 type debugAnnotator struct{ syntaxhighlight.Annotator }
 
 func (a debugAnnotator) Annotate(start int, kind syntaxhighlight.Kind, tokText string) (*annotate.Annotation, error) {
-	fmt.Println(gist6418290.GetParentFuncArgsAsString(start, kind, tokText))
+	fmt.Println(reflectsource.GetParentFuncArgsAsString(start, kind, tokText))
 
 	return a.Annotator.Annotate(start, kind, tokText)
 }
