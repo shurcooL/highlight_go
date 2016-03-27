@@ -78,7 +78,7 @@ func main() {
 	// <span class="pln">}</span>
 }
 
-func ExamplePrintWhitespace() {
+func ExamplePrint_whitespace() {
 	src := []byte("  package    main      \n\t\n")
 
 	highlight_go.Print(src, ioutil.Discard, debugPrinter{Printer: syntaxhighlight.HTMLPrinter(syntaxhighlight.DefaultHTMLConfig)})
