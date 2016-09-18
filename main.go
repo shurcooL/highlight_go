@@ -59,7 +59,7 @@ func Print(src []byte, w io.Writer, p syntaxhighlight.Printer) error {
 		}
 
 		// Whitespace between previous and current tokens.
-		offset := int(fset.Position(pos).Offset)
+		offset := fset.Position(pos).Offset
 		if whitespace := string(src[lastOffset:offset]); whitespace != "" {
 			err := p.Print(w, syntaxhighlight.Whitespace, whitespace)
 			if err != nil {
@@ -99,7 +99,7 @@ func Annotate(src []byte, a syntaxhighlight.Annotator) (annotate.Annotations, er
 			break
 		}
 
-		offset := int(fset.Position(pos).Offset)
+		offset := fset.Position(pos).Offset
 
 		var tokString string
 		if lit != "" {
