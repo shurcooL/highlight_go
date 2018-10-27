@@ -91,6 +91,47 @@ func ExamplePrint_whitespace() {
 	// Print(syntaxhighlight.Whitespace, "      \n\t\n")
 }
 
+// See issue golang.org/issue/28112.
+func ExamplePrint_twoDots() {
+	src := []byte("a..b..")
+
+	// debugPrinter implements syntaxhighlight.Printer and prints the parameters it's given.
+	p := debugPrinter{Printer: syntaxhighlight.HTMLPrinter(syntaxhighlight.DefaultHTMLConfig)}
+
+	var buf bytes.Buffer
+	highlight_go.Print(src, &buf, p)
+
+	io.Copy(os.Stdout, &buf)
+
+	// Output:
+	// Print(syntaxhighlight.Plaintext, "a")
+	// Print(syntaxhighlight.Plaintext, ".")
+	// Print(syntaxhighlight.Plaintext, ".")
+	// Print(syntaxhighlight.Plaintext, "b")
+	// Print(syntaxhighlight.Plaintext, ".")
+	// Print(syntaxhighlight.Plaintext, ".")
+	// <span class="pln">a</span><span class="pln">.</span><span class="pln">.</span><span class="pln">b</span><span class="pln">.</span><span class="pln">.</span>
+}
+
+func ExamplePrint_illegal() {
+	src := []byte(" a @ @@@ b ")
+
+	highlight_go.Print(src, ioutil.Discard, debugPrinter{Printer: syntaxhighlight.HTMLPrinter(syntaxhighlight.DefaultHTMLConfig)})
+
+	// Output:
+	// Print(syntaxhighlight.Whitespace, " ")
+	// Print(syntaxhighlight.Plaintext, "a")
+	// Print(syntaxhighlight.Whitespace, " ")
+	// Print(syntaxhighlight.Plaintext, "@")
+	// Print(syntaxhighlight.Whitespace, " ")
+	// Print(syntaxhighlight.Plaintext, "@")
+	// Print(syntaxhighlight.Plaintext, "@")
+	// Print(syntaxhighlight.Plaintext, "@")
+	// Print(syntaxhighlight.Whitespace, " ")
+	// Print(syntaxhighlight.Plaintext, "b")
+	// Print(syntaxhighlight.Whitespace, " ")
+}
+
 // debugAnnotator implements syntaxhighlight.Annotator and prints the parameters it's given.
 type debugAnnotator struct{ syntaxhighlight.Annotator }
 
