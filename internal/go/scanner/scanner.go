@@ -2,20 +2,20 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Package scanner implements a scanner for Go source text.
-// It takes a []byte as source which can then be tokenized
-// through repeated calls to the Scan method.
-//
+// Package scanner is a copy of go/scanner from Go 1.11.1 with
+// https://golang.org/issue/28112 resolved (via https://golang.org/cl/141337).
+// It is also modified to use a copy of go/token from Go 1.11.1.
 package scanner
 
 import (
 	"bytes"
 	"fmt"
-	"go/token"
 	"path/filepath"
 	"strconv"
 	"unicode"
 	"unicode/utf8"
+
+	"github.com/shurcooL/highlight_go/internal/go/token"
 )
 
 // An ErrorHandler may be provided to Scanner.Init. If a syntax error is

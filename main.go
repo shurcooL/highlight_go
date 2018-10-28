@@ -2,15 +2,16 @@
 package highlight_go
 
 import (
-	"go/scanner"
-	"go/token"
 	"io"
+
+	"github.com/shurcooL/highlight_go/internal/go/scanner"
+	"github.com/shurcooL/highlight_go/internal/go/token"
 
 	"github.com/sourcegraph/annotate"
 	"github.com/sourcegraph/syntaxhighlight"
 )
 
-// TODO: Remove vendored go/scanner copy after Go 1.12 is released.
+// TODO: Stop using internal copies of go/scanner and go/token in Go 1.12.
 
 // TokenKind returns a syntaxhighlight token kind value for the given tok and lit.
 func TokenKind(tok token.Token, lit string) syntaxhighlight.Kind {
