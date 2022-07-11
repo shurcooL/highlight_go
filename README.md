@@ -1,18 +1,18 @@
 highlight_go
 ============
 
-[![Build Status](https://travis-ci.org/shurcooL/highlight_go.svg?branch=master)](https://travis-ci.org/shurcooL/highlight_go) [![GoDoc](https://godoc.org/github.com/shurcooL/highlight_go?status.svg)](https://godoc.org/github.com/shurcooL/highlight_go)
+[![Go Reference](https://pkg.go.dev/badge/github.com/shurcooL/highlight_go.svg)](https://pkg.go.dev/github.com/shurcooL/highlight_go)
 
 Package highlight_go provides a syntax highlighter for Go, using go/scanner.
 
 Installation
 ------------
 
-```bash
-go get -u github.com/shurcooL/highlight_go
+```sh
+go get github.com/shurcooL/highlight_go
 ```
 
 License
 -------
 
--	[MIT License](https://opensource.org/licenses/mit-license.php)
+-	[MIT License](LICENSE)
