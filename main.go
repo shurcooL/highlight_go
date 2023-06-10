@@ -31,6 +31,7 @@ func TokenKind(tok token.Token, lit string) syntaxhighlight.Kind {
 	}
 }
 
+// Print prints src to w using printer p.
 func Print(src []byte, w io.Writer, p syntaxhighlight.Printer) error {
 	var s scanner.Scanner
 	fset := token.NewFileSet()
@@ -80,6 +81,7 @@ func Print(src []byte, w io.Writer, p syntaxhighlight.Printer) error {
 	return nil
 }
 
+// Annotate annotates src using annotator a.
 func Annotate(src []byte, a syntaxhighlight.Annotator) (annotate.Annotations, error) {
 	var s scanner.Scanner
 	fset := token.NewFileSet()
@@ -111,6 +113,8 @@ func Annotate(src []byte, a syntaxhighlight.Annotator) (annotate.Annotations, er
 	return anns, nil
 }
 
+// tokenText returns the token tok if lit is empty,
+// or the literal lit if it's non-empty.
 func tokenText(tok token.Token, lit string) string {
 	if lit == "" {
 		return tok.String()
